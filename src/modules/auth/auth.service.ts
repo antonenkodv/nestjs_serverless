@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import * as bcrypt from 'bcrypt';
+import * as bcryptjs from 'bcryptjs';
 import { JwtService } from '@nestjs/jwt';
 import { UsersService } from '../users/users.service';
 
@@ -56,12 +56,12 @@ export class AuthService {
     }
 
     private async hashPassword(password) {
-        const hash = await bcrypt.hash(password, 10);
+        const hash = await bcryptjs.hash(password, 10);
         return hash;
     }
 
     private async comparePassword(enteredPassword, dbPassword) {
-        const match = await bcrypt.compare(enteredPassword, dbPassword);
+        const match = await bcryptjs.compare(enteredPassword, dbPassword);
         return match;
     }
 }
