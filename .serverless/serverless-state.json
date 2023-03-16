@@ -1,8 +1,8 @@
 {
   "service": {
-    "service": "lonely-meet",
+    "service": "cicd-nest-sls-service",
     "serviceObject": {
-      "name": "lonely-meet"
+      "name": "cicd-nest-sls-service"
     },
     "provider": {
       "name": "aws",
@@ -22,10 +22,10 @@
       ],
       "environment": {
         "STAGE": "dev",
-        "DB_USER": "dantonenko",
-        "DB_PASS": "Diman6996",
-        "DB_NAME": "nestjs_serverless_database",
-        "DB_HOST": "nestjs-serverless-database-instance.cq9epfzq7rs9.us-east-1.rds.amazonaws.com",
+        "DB_USER": "postgres",
+        "DB_PASS": "8aQ9BSYXCpEz",
+        "DB_NAME": "nest_sls_tutorial",
+        "DB_HOST": "db-sls-instance.cq9epfzq7rs9.us-east-1.rds.amazonaws.com",
         "DB_PORT": "5432",
         "DB_DIALECT": "postgres",
         "JWTKEY": "random_secret_key",
@@ -109,7 +109,7 @@
           "MainLogGroup": {
             "Type": "AWS::Logs::LogGroup",
             "Properties": {
-              "LogGroupName": "/aws/lambda/lonely-meet-dev-main"
+              "LogGroupName": "/aws/lambda/cicd-nest-sls-service-dev-main"
             }
           },
           "IamRoleLambdaExecution": {
@@ -137,7 +137,7 @@
                     "Fn::Join": [
                       "-",
                       [
-                        "lonely-meet",
+                        "cicd-nest-sls-service",
                         "dev",
                         "lambda"
                       ]
@@ -155,7 +155,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/lonely-meet-dev*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cicd-nest-sls-service-dev*:*"
                           }
                         ]
                       },
@@ -166,7 +166,7 @@
                         ],
                         "Resource": [
                           {
-                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/lonely-meet-dev*:*:*"
+                            "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/cicd-nest-sls-service-dev*:*:*"
                           }
                         ]
                       },
@@ -182,7 +182,7 @@
                 "Fn::Join": [
                   "-",
                   [
-                    "lonely-meet",
+                    "cicd-nest-sls-service",
                     "dev",
                     {
                       "Ref": "AWS::Region"
@@ -200,20 +200,20 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/lonely-meet/dev/1678960052593-2023-03-16T09:47:32.593Z/lonely-meet.zip"
+                "S3Key": "serverless/cicd-nest-sls-service/dev/1678973921081-2023-03-16T13:38:41.081Z/cicd-nest-sls-service.zip"
               },
               "Handler": "dist/serverless.handler",
               "Runtime": "nodejs12.x",
-              "FunctionName": "lonely-meet-dev-main",
+              "FunctionName": "cicd-nest-sls-service-dev-main",
               "MemorySize": 1024,
               "Timeout": 30,
               "Environment": {
                 "Variables": {
                   "STAGE": "dev",
-                  "DB_USER": "dantonenko",
-                  "DB_PASS": "Diman6996",
-                  "DB_NAME": "nestjs_serverless_database",
-                  "DB_HOST": "nestjs-serverless-database-instance.cq9epfzq7rs9.us-east-1.rds.amazonaws.com",
+                  "DB_USER": "postgres",
+                  "DB_PASS": "8aQ9BSYXCpEz",
+                  "DB_NAME": "nest_sls_tutorial",
+                  "DB_HOST": "db-sls-instance.cq9epfzq7rs9.us-east-1.rds.amazonaws.com",
                   "DB_PORT": "5432",
                   "DB_DIALECT": "postgres",
                   "JWTKEY": "random_secret_key",
@@ -232,20 +232,20 @@
               "MainLogGroup"
             ]
           },
-          "MainLambdaVersionRmGOZ49bSoDw5MCJbqtogrt6qpdYRAMvOC9E1Wdo": {
+          "MainLambdaVersionKhCfbJUex2cz1Hb77DzYg9nAg8OmhCzKYkZJ7mUug": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "MainLambdaFunction"
               },
-              "CodeSha256": "OBnwA5wauAA9BHTNgbQR+cb4/6VD+e9l1fnFv1aEDWg="
+              "CodeSha256": "6L57H2Yf+81HN40+Fv5Sc1YUFpsHir0jmk6MjySWZOI="
             }
           },
           "ApiGatewayRestApi": {
             "Type": "AWS::ApiGateway::RestApi",
             "Properties": {
-              "Name": "dev-lonely-meet",
+              "Name": "dev-cicd-nest-sls-service",
               "EndpointConfiguration": {
                 "Types": [
                   "EDGE"
@@ -315,7 +315,7 @@
               "MainLambdaPermissionApiGateway"
             ]
           },
-          "ApiGatewayDeployment1678960028988": {
+          "ApiGatewayDeployment1678973897905": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -371,16 +371,16 @@
               "Ref": "ServerlessDeploymentBucket"
             },
             "Export": {
-              "Name": "sls-lonely-meet-dev-ServerlessDeploymentBucketName"
+              "Name": "sls-cicd-nest-sls-service-dev-ServerlessDeploymentBucketName"
             }
           },
           "MainLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "MainLambdaVersionRmGOZ49bSoDw5MCJbqtogrt6qpdYRAMvOC9E1Wdo"
+              "Ref": "MainLambdaVersionKhCfbJUex2cz1Hb77DzYg9nAg8OmhCzKYkZJ7mUug"
             },
             "Export": {
-              "Name": "sls-lonely-meet-dev-MainLambdaFunctionQualifiedArn"
+              "Name": "sls-cicd-nest-sls-service-dev-MainLambdaFunctionQualifiedArn"
             }
           },
           "ServiceEndpoint": {
@@ -406,7 +406,7 @@
               ]
             },
             "Export": {
-              "Name": "sls-lonely-meet-dev-ServiceEndpoint"
+              "Name": "sls-cicd-nest-sls-service-dev-ServiceEndpoint"
             }
           }
         }
@@ -512,18 +512,18 @@
             }
           }
         ],
-        "name": "lonely-meet-dev-main",
+        "name": "cicd-nest-sls-service-dev-main",
         "package": {},
         "memory": 1024,
         "runtime": "nodejs12.x",
         "vpc": {},
-        "versionLogicalId": "MainLambdaVersionRmGOZ49bSoDw5MCJbqtogrt6qpdYRAMvOC9E1Wdo"
+        "versionLogicalId": "MainLambdaVersionKhCfbJUex2cz1Hb77DzYg9nAg8OmhCzKYkZJ7mUug"
       }
     },
     "configValidationMode": "warn",
     "serviceFilename": "serverless.yaml",
     "initialServerlessConfig": {
-      "service": "lonely-meet",
+      "service": "cicd-nest-sls-service",
       "useDotenv": true,
       "plugins": {
         "$ref": "$[\"service\"][\"plugins\"]"
@@ -537,10 +537,10 @@
     },
     "layers": {},
     "isDashboardMonitoringPreconfigured": false,
-    "artifact": "/Users/Dmitrij/indiv/Pets/nestjs-serverless/server/.serverless/lonely-meet.zip"
+    "artifact": "/Users/Dmitrij/indiv/Pets/nestjs-serverless/server/.serverless/cicd-nest-sls-service.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/lonely-meet/dev/1678960052593-2023-03-16T09:47:32.593Z",
-    "artifact": "lonely-meet.zip"
+    "artifactDirectoryName": "serverless/cicd-nest-sls-service/dev/1678973921081-2023-03-16T13:38:41.081Z",
+    "artifact": "cicd-nest-sls-service.zip"
   }
 }

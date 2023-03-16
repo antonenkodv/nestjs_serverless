@@ -1,4 +1,4 @@
-service: lonely-meet
+service: cicd-nest-sls-service
 
 useDotenv: true
 
@@ -16,7 +16,9 @@ provider:
     - Effect: Allow
       Action:
         - lambda:InvokeFunction
+        - ssm:GetParameter
       Resource: "*"
+
   environment:
     STAGE: ${opt:stage, 'dev'}
     DB_USER: ${ssm:/${opt:stage, 'dev'}/DB_USER}
