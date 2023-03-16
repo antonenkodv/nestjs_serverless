@@ -74,7 +74,7 @@
     "MainLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/nestjs-serverless-lambda-dev-main"
+        "LogGroupName": "/aws/lambda/lonely-meet-dev-main"
       }
     },
     "IamRoleLambdaExecution": {
@@ -102,7 +102,7 @@
               "Fn::Join": [
                 "-",
                 [
-                  "nestjs-serverless-lambda",
+                  "lonely-meet",
                   "dev",
                   "lambda"
                 ]
@@ -120,7 +120,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nestjs-serverless-lambda-dev*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/lonely-meet-dev*:*"
                     }
                   ]
                 },
@@ -131,7 +131,7 @@
                   ],
                   "Resource": [
                     {
-                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/nestjs-serverless-lambda-dev*:*:*"
+                      "Fn::Sub": "arn:${AWS::Partition}:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/lonely-meet-dev*:*:*"
                     }
                   ]
                 },
@@ -151,7 +151,7 @@
           "Fn::Join": [
             "-",
             [
-              "nestjs-serverless-lambda",
+              "lonely-meet",
               "dev",
               {
                 "Ref": "AWS::Region"
@@ -169,11 +169,11 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/nestjs-serverless-lambda/dev/1678184031022-2023-03-07T10:13:51.022Z/nestjs-serverless-lambda.zip"
+          "S3Key": "serverless/lonely-meet/dev/1678960052593-2023-03-16T09:47:32.593Z/lonely-meet.zip"
         },
         "Handler": "dist/serverless.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "nestjs-serverless-lambda-dev-main",
+        "FunctionName": "lonely-meet-dev-main",
         "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
@@ -201,20 +201,20 @@
         "MainLogGroup"
       ]
     },
-    "MainLambdaVersionqTCNRWs5hZqzD93LmhaUIGPB7GPSsfIqZsaeYLcxihs": {
+    "MainLambdaVersionRmGOZ49bSoDw5MCJbqtogrt6qpdYRAMvOC9E1Wdo": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "MainLambdaFunction"
         },
-        "CodeSha256": "Ns3hKFhfZwKG40Bz/RbBZfFS5bR+WN74Lyvo+evvPlk="
+        "CodeSha256": "OBnwA5wauAA9BHTNgbQR+cb4/6VD+e9l1fnFv1aEDWg="
       }
     },
     "ApiGatewayRestApi": {
       "Type": "AWS::ApiGateway::RestApi",
       "Properties": {
-        "Name": "dev-nestjs-serverless-lambda",
+        "Name": "dev-lonely-meet",
         "EndpointConfiguration": {
           "Types": [
             "EDGE"
@@ -284,7 +284,7 @@
         "MainLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1678184007319": {
+    "ApiGatewayDeployment1678960028988": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -340,16 +340,16 @@
         "Ref": "ServerlessDeploymentBucket"
       },
       "Export": {
-        "Name": "sls-nestjs-serverless-lambda-dev-ServerlessDeploymentBucketName"
+        "Name": "sls-lonely-meet-dev-ServerlessDeploymentBucketName"
       }
     },
     "MainLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionqTCNRWs5hZqzD93LmhaUIGPB7GPSsfIqZsaeYLcxihs"
+        "Ref": "MainLambdaVersionRmGOZ49bSoDw5MCJbqtogrt6qpdYRAMvOC9E1Wdo"
       },
       "Export": {
-        "Name": "sls-nestjs-serverless-lambda-dev-MainLambdaFunctionQualifiedArn"
+        "Name": "sls-lonely-meet-dev-MainLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
@@ -375,7 +375,7 @@
         ]
       },
       "Export": {
-        "Name": "sls-nestjs-serverless-lambda-dev-ServiceEndpoint"
+        "Name": "sls-lonely-meet-dev-ServiceEndpoint"
       }
     }
   }

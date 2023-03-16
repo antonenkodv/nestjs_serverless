@@ -1,4 +1,4 @@
-service: nestjs-serverless-lambda
+service: lonely-meet
 
 useDotenv: true
 
