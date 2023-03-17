@@ -18,6 +18,11 @@ provider:
         - lambda:InvokeFunction
         - ssm:GetParameter
       Resource: "*"
+    - Effect: Allow
+      Action:
+        - iam:GetRole
+      Resource: "arn:aws:lambda:us-east-1:666398651410:function:cicd-nest-sls-service-dev-main"
+
 
   environment:
     STAGE: ${opt:stage, 'dev'}
