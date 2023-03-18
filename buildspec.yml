@@ -10,4 +10,4 @@ phases:
       - npm test
   build:
     commands:
-      - sls deploy -s dev --verbose
+      - sls deploy -s dev
