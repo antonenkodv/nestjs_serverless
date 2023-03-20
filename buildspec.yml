@@ -18,5 +18,4 @@ artifacts:
     - 'node_modules/**/*'
     - '.serverless/**/*'
   discard-paths: no
-  base-directory: dist
 
