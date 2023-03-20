@@ -11,3 +11,12 @@ phases:
   build:
     commands:
       - sls deploy -s dev
+artifacts:
+  files:
+    - '**/*'
+  exclude:
+    - 'node_modules/**/*'
+    - '.serverless/**/*'
+  discard-paths: no
+  base-directory: build
+
