@@ -9,10 +9,10 @@ phases:
       - pip install --upgrade awscli
       - npm test
   build:
-    commands:
+    commands
       - sls deploy -s dev
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
+#artifacts:
+#  files:
+#    - '**/*'
+#  discard-paths: no
 
