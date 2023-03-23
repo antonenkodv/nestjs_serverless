@@ -10,7 +10,7 @@ phases:
       - npm test
   build:
     commands:
-      - sls deploy -stage dev
+      - sls deploy --stage dev
 artifacts:
   files:
     - serverless.yml
