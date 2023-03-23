@@ -13,5 +13,6 @@ phases:
       - sls deploy --stage dev
 artifacts:
   files:
-    - serverless.yml
+    - '**/*'
+  discard-paths: no
 
