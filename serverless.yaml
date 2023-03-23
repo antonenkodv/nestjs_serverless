@@ -21,8 +21,6 @@ provider:
         - iam:PassRole
       Resource: "*"
 
-
-
   environment:
     STAGE: ${opt:stage, 'dev'}
     DB_USER: ${ssm:/${opt:stage, 'dev'}/DB_USER}
