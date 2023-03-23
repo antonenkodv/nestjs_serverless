@@ -1,14 +1,17 @@
 version: 0.2
 
 phases:
+  runtime-versions:
+    nodejs: 12
   install:
     commands:
-      - npm i
-      - npm i serverless
-      - pip install --upgrade pip
-      - pip install --upgrade awscli
+      - npm install -g serverless
+      - npm install
       - npm test
   build:
-    commands
-      - sls deploy -s dev
+    commands:
+      - sls deploy -stage dev
+artifacts:
+  files:
+    - serverless.yml
 

@@ -71,10 +71,10 @@
         }
       }
     },
-    "MainLogGroup": {
+    "AppLogGroup": {
       "Type": "AWS::Logs::LogGroup",
       "Properties": {
-        "LogGroupName": "/aws/lambda/cicd-nest-sls-service-dev-main"
+        "LogGroupName": "/aws/lambda/cicd-nest-sls-service-dev-app"
       }
     },
     "IamRoleLambdaExecution": {
@@ -138,7 +138,10 @@
                 {
                   "Effect": "Allow",
                   "Action": [
-                    "lambda:InvokeFunction"
+                    "lambda:InvokeFunction",
+                    "ssm:GetParameter",
+                    "iam:GetRole",
+                    "iam:PassRole"
                   ],
                   "Resource": "*"
                 }
@@ -162,18 +165,18 @@
         }
       }
     },
-    "MainLambdaFunction": {
+    "AppLambdaFunction": {
       "Type": "AWS::Lambda::Function",
       "Properties": {
         "Code": {
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/cicd-nest-sls-service/dev/1678973921081-2023-03-16T13:38:41.081Z/cicd-nest-sls-service.zip"
+          "S3Key": "serverless/cicd-nest-sls-service/dev/1679562160712-2023-03-23T09:02:40.712Z/cicd-nest-sls-service.zip"
         },
         "Handler": "dist/serverless.handler",
         "Runtime": "nodejs12.x",
-        "FunctionName": "cicd-nest-sls-service-dev-main",
+        "FunctionName": "cicd-nest-sls-service-dev-app",
         "MemorySize": 1024,
         "Timeout": 30,
         "Environment": {
@@ -198,17 +201,17 @@
         }
       },
       "DependsOn": [
-        "MainLogGroup"
+        "AppLogGroup"
       ]
     },
-    "MainLambdaVersionKhCfbJUex2cz1Hb77DzYg9nAg8OmhCzKYkZJ7mUug": {
+    "AppLambdaVersionQaft3FWM8Q7N1qswfb8dDm2YLp1ymys35OhhgydPwHc": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
-          "Ref": "MainLambdaFunction"
+          "Ref": "AppLambdaFunction"
         },
-        "CodeSha256": "6L57H2Yf+81HN40+Fv5Sc1YUFpsHir0jmk6MjySWZOI="
+        "CodeSha256": "jtgxmjZ+fOOJZNbcdUH6ylqKYnfwUf0edzBfAkHpCXM="
       }
     },
     "ApiGatewayRestApi": {
@@ -269,7 +272,7 @@
                 ":lambda:path/2015-03-31/functions/",
                 {
                   "Fn::GetAtt": [
-                    "MainLambdaFunction",
+                    "AppLambdaFunction",
                     "Arn"
                   ]
                 },
@@ -281,10 +284,10 @@
         "MethodResponses": []
       },
       "DependsOn": [
-        "MainLambdaPermissionApiGateway"
+        "AppLambdaPermissionApiGateway"
       ]
     },
-    "ApiGatewayDeployment1678973897905": {
+    "ApiGatewayDeployment1679562137212": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -296,12 +299,12 @@
         "ApiGatewayMethodAnyVarAny"
       ]
     },
-    "MainLambdaPermissionApiGateway": {
+    "AppLambdaPermissionApiGateway": {
       "Type": "AWS::Lambda::Permission",
       "Properties": {
         "FunctionName": {
           "Fn::GetAtt": [
-            "MainLambdaFunction",
+            "AppLambdaFunction",
             "Arn"
           ]
         },
@@ -343,13 +346,13 @@
         "Name": "sls-cicd-nest-sls-service-dev-ServerlessDeploymentBucketName"
       }
     },
-    "MainLambdaFunctionQualifiedArn": {
+    "AppLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "MainLambdaVersionKhCfbJUex2cz1Hb77DzYg9nAg8OmhCzKYkZJ7mUug"
+        "Ref": "AppLambdaVersionQaft3FWM8Q7N1qswfb8dDm2YLp1ymys35OhhgydPwHc"
       },
       "Export": {
-        "Name": "sls-cicd-nest-sls-service-dev-MainLambdaFunctionQualifiedArn"
+        "Name": "sls-cicd-nest-sls-service-dev-AppLambdaFunctionQualifiedArn"
       }
     },
     "ServiceEndpoint": {
