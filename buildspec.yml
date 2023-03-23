@@ -11,8 +11,4 @@ phases:
   build:
     commands:
       - sls deploy --stage dev
-artifacts:
-  files:
-    - '**/*'
-  discard-paths: no
 
